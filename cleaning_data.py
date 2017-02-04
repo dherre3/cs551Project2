@@ -1,7 +1,8 @@
-'''
-Author: David Herrera
-Date: 02/02/2017
-'''
+"""
+Created on Sat Feb  4 13:31:39 2017
+
+@author: davidherrera
+"""
 #==============================================================================
 # Importing Libraries 
 #==============================================================================
@@ -9,7 +10,7 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 import cleaning_library as cl
- 
+import nltk
 #==============================================================================
 # Script Parameters
 #==============================================================================
@@ -23,7 +24,7 @@ datasetTrainInput = pd.read_csv(trainFilepath)
 datasetTrainOutput = pd.read_csv(targetFilepath)
 
 conversations = datasetTrainInput['conversation'].values
-conversations = np.array([cl.cleanAngleBrackets(x) for x in conversations]) 
+conversations = np.array([cl.cleanData(x) for x in conversations]) 
 train_output = datasetTrainOutput['category'].values
 train_input = conversations
 
@@ -32,7 +33,14 @@ from sklearn.model_selection import train_test_split
 X_train, X_test, y_train, y_test = train_test_split(train_input, train_output, test_size=0.2, random_state=0 ) 
 
 
-from sklearn.feature_extraction.text import CountVectorizer
+#from sklearn.feature_extraction.text import CountVectorizer
+#count_vect = CountVectorizer()
+#X_train_counts = count_vect.fit_transform(X_train)
+#print(X_train_counts)
+
+
+
+
 from sklearn.feature_extraction.text import TfidfTransformer
 from sklearn.naive_bayes import MultinomialNB
 from sklearn.linear_model import SGDClassifier
