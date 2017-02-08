@@ -8,7 +8,7 @@ import re
 
 def cleanWordsLessThanThree(string):
     arrayOfWords = string.split( )
-    arrayOfWords = np.array([word for word in arrayOfWords if len(word)>1])
+    arrayOfWords = np.array([word for word in arrayOfWords if len(word)>3])
     string = ' '.join(arrayOfWords)
     return string
 
