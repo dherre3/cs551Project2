@@ -123,7 +123,6 @@ def prediction (test_dataset, bag_of_words, cat_prob , total_number_words ,numbe
 
     for index in test_dataset.index:
         conversation = word_tokenize( test_dataset['conversation'][index])
-        len_conv = len (conversation)
         counter = FreqDist (conversation)
         arg_max = None
         prediction = None
@@ -134,7 +133,7 @@ def prediction (test_dataset, bag_of_words, cat_prob , total_number_words ,numbe
 
             for word in conversation:
 
-                argument += counter[word]/len_conv * log( (bag_of_words[category][word] + 1 )
+                argument += counter[word] * log( (bag_of_words[category][word] + 1 )
                                                             /(number_words_per_feature + total_number_words) ) 
 
             argument += cat_prob [category]
