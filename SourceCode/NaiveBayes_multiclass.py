@@ -154,7 +154,7 @@ def prediction (test_dataset, bag_of_words, cat_prob , total_number_words ,numbe
 
 
 def results_val(test_dataset):
-    from sklearn.metrics import confusion_matrix
+	from sklearn.metrics import confusion_matrix
     import itertools
     import matplotlib.pyplot as plt
 
@@ -171,7 +171,7 @@ def results_val(test_dataset):
     This function prints and plots the confusion matrix.
     Normalization can be applied by setting `normalize=True`.
     """
-    plt.imshow(confusion_matrix, interpolation='nearest', cmap=cmap)
+    plt.imshow(confusion_matrix, interpolation='nearest', cmap=plt.cm.Blues)
     plt.title('Confusion Matrix')
     plt.colorbar()
     tick_marks = np.arange(len(classes))
@@ -184,13 +184,12 @@ def results_val(test_dataset):
     ##else:
     ##    print('Confusion matrix, without normalization')
 
-    print(cm)
-
-    thresh = cm.max() / 2.
-    for i, j in itertools.product(range(cm.shape[0]), range(cm.shape[1])):
-        plt.text(j, i, cm[i, j],
+ 
+    thresh = confusion_matrix.max() / 2.
+    for i, j in itertools.product(range(confusion_matrix.shape[0]), range(confusion_matrix.shape[1])):
+        plt.text(j, i, confusion_matrix[i, j],
                  horizontalalignment="center",
-                 color="white" if cm[i, j] > thresh else "black")
+                 color="white" if confusion_matrix[i, j] > thresh else "black")
 
     plt.tight_layout()
     plt.ylabel('True label')
