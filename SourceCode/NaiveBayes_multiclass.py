@@ -165,7 +165,7 @@ def results_val(test_dataset):
     classes = np.unique( test_dataset['category'] )
 
     confusion_matrix = confusion_matrix(y_true, y_pred)
-
+	confusion_matrix = np.around(confusion_matrix.astype('float') / confusion_matrix.sum(axis=1)[:, np.newaxis],3)
 
     """
     This function prints and plots the confusion matrix.
