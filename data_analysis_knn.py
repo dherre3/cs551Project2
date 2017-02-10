@@ -45,14 +45,7 @@ test_input = conversationsTest
 
 
 from sklearn.feature_extraction.text import CountVectorizer
-#count_vect = CountVectorizer()
-#X_train_counts = count_vect.fit_transform(X_train)
-#print(X_train_counts)
-
-
-from sklearn.feature_extraction.text import TfidfTransformer
-from sklearn.feature_extraction.text import CountVectorizer
-count_vect = CountVectorizer(max_features=5000)
+count_vect = CountVectorizer(max_features=1000)
 X_train_counts = count_vect.fit_transform(train_input)
 X_test_counts = count_vect.transform(test_input)
 
