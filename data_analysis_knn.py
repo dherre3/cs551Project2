@@ -64,3 +64,8 @@ X_test_counts = Tfid_vect.transform(X_test_counts)
 x_train = X_train_counts.toarray();
 x_test = X_test_counts.toarray();
 prediction = knn.kNN(x_train,train_output, x_test,10)
+ids = datasetTestInput['id'].values
+print(ids.shape, predicted.shape)
+prediction = np.array([ids,predicted]).T
+prediction_dataframe = pd.DataFrame(prediction, columns=['id','category'])          
+prediction_dataframe.to_csv('./data/test_prediction_v1_knn.csv', index=False)
