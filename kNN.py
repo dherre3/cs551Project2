@@ -17,7 +17,6 @@ def getTopNNeighbours(n, distanceVector,x_output):
     #build initial heap  
     for distance in range(n):
         heapq.heappush(heap, (-distanceVector[distance],distance))
-    print(heap)
     for distance in range(n,len(distanceVector)):
         maxVal = heapq.heappop(heap)
         if maxVal[0] < -distanceVector[distance]:
@@ -28,7 +27,6 @@ def getTopNNeighbours(n, distanceVector,x_output):
     for neighbor in range(n):
         final.append((heap[neighbor][1],-heap[neighbor][0],x_output[heap[neighbor][1]]))
         outputCategories.append(x_output[heap[neighbor][1]])
-    print(heap)
     return (final,outputCategories)
  
 def getMajorityClass(topNneighbors):

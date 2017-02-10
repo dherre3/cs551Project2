@@ -42,21 +42,24 @@ test_input = conversationsTest
 
 #from sklearn.model_selection import train_test_split
 #X_train, X_test, y_train, y_test = train_test_split(train_input, train_output, test_size=0.2, random_state=0 ) 
-
-
-from sklearn.feature_extraction.text import CountVectorizer
-count_vect = CountVectorizer(max_features=1000)
-X_train_counts = count_vect.fit_transform(train_input)
-X_test_counts = count_vect.transform(test_input)
-
-from sklearn.feature_extraction.text import TfidfTransformer
-Tfid_vect =TfidfTransformer()
-tfid_result = Tfid_vect.fit_transform(X_train_counts)
-X_test_counts = Tfid_vect.transform(X_test_counts)
+from sklearn.feature_extraction.text import TfidfVectorizer
+vectorizer = TfidfVectorizer(max_df=0.8, max_features=2000,
+                                 min_df=2, stop_words='english')
+X_train_counts  = vectorizer.fit_transform(train_input)
+X_test_counts = vectorizer.transform(test_input)
+#from sklearn.feature_extraction.text import CountVectorizer
+#count_vect = CountVectorizer()
+#X_train_counts = count_vect.fit_transform(train_input)
+#X_test_counts = count_vect.transform(test_input)
+#
+#from sklearn.feature_extraction.text import TfidfTransformer
+#Tfid_vect =TfidfTransformer(max_features=500)
+#tfid_result = Tfid_vect.fit_transform(X_train_counts)
+#X_test_counts = Tfid_vect.transform(X_test_counts)
 
 x_train = X_train_counts.toarray();
 x_test = X_test_counts.toarray();
-prediction = knn.kNN(x_train,train_output, x_test,10)
+prediction = knn.kNN(x_train,train_output, x_test,20)
 ids = datasetTestInput['id'].values
 print(ids.shape, predicted.shape)
 prediction = np.array([ids,predicted]).T
