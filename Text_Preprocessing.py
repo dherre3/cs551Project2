@@ -8,7 +8,7 @@ from nltk.stem.lancaster import LancasterStemmer
 import re
 from bs4 import BeautifulSoup
 
-train = pd.read_csv("trainining_dataset.csv", header=0)
+train = pd.read_csv("./data/train_input.csv", header=0)
 ps = LancasterStemmer()
 def conversation_words( raw_text ):
     # Function to pre process text data by removing html tags, punctuation 
