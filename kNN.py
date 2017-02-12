@@ -50,7 +50,7 @@ def kNN(x_train, y_train,x_predict,number_neighbors=3):
         #print("======Obtaining top 10 neighbors")
         (distanceTuples, topCategories) = getTopNNeighbours(number_neighbors,distance,y_train)
         #print("Getting Majority Class")
-        print(distanceTuples,topCategories)
+        print(topCategories)
         y_predict.append(getMajorityClass(topCategories))
         print("Done Getting Majority class: "+y_predict[sample])
     return y_predict
